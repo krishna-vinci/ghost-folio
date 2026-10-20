@@ -1,0 +1,15 @@
+{{!< default}}
+
+<main class="gh-main gh-outer">
+    <section class="gh-inner kq-collection kq-videos">
+        <header class="kq-page-header">
+            <h1 class="kq-page-title">Videos</h1>
+        </header>
+        <div class="kq-collection-grid kq-video-grid">
+            {{#foreach posts}}
+                {{> "video-card"}}
+            {{/foreach}}
+        </div>
+        {{#match pagination.pages ">" 1}}{{#match pagination.pages ">" 1}}{{pagination}}{{/match}}{{/match}}
+    </section>
+</main>

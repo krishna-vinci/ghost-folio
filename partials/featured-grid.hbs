@@ -1,0 +1,14 @@
+{{#get "posts" filter="featured:true+tag:-hash-project" limit="3" include="tags"}}
+    {{#if posts}}
+        <section class="kq-section kq-featured">
+            <header class="kq-section-header">
+                <h2 class="kq-section-title">Featured</h2>
+            </header>
+            <div class="kq-featured-grid">
+                {{#foreach posts}}
+                    {{> "featured-card"}}
+                {{/foreach}}
+            </div>
+        </section>
+    {{/if}}
+{{/get}}

@@ -1,0 +1,11 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file into the body of the default.hbs template --}}
+
+<main class="gh-main">
+    <div class="gh-outer kq-writing-head">
+        <header class="gh-inner kq-page-header">
+            <h1 class="kq-page-title">Writing</h1>
+        </header>
+    </div>
+    {{> "components/post-list" feed="index" showTitle=false}}
+</main>

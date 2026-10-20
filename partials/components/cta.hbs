@@ -1,0 +1,17 @@
+{{#if @site.members_enabled}}
+    {{#unless @member}}
+        <section class="gh-cta gh-outer">
+            <div class="gh-cta-inner gh-inner">
+                <div class="gh-cta-content">
+                    <h2 class="gh-cta-title is-title">
+                        {{#if @custom.signup_heading}}{{@custom.signup_heading}}{{else}}New projects and posts, <em>by email.</em>{{/if}}
+                    </h2>
+                    {{#if @custom.signup_subheading}}
+                        <p class="gh-cta-description is-body">{{@custom.signup_subheading}}</p>
+                    {{/if}}
+                </div>
+                {{> "email-subscription" email_field_id="cta-email"}}
+            </div>
+        </section>
+    {{/unless}}
+{{/if}}

@@ -1,0 +1,17 @@
+{{!< default}}
+
+<main class="gh-main gh-outer">
+    <section class="gh-inner kq-collection kq-projects">
+        <header class="kq-page-header">
+            <h1 class="kq-page-title">Projects</h1>
+            {{#if @custom.projects_intro}}<p class="kq-page-intro">{{@custom.projects_intro}}</p>{{/if}}
+        </header>
+        <div class="kq-filter" data-kq-filter hidden></div>
+        <div class="kq-collection-grid kq-project-grid">
+            {{#foreach posts}}
+                {{> "project-card"}}
+            {{/foreach}}
+        </div>
+        {{#match pagination.pages ">" 1}}{{pagination}}{{/match}}
+    </section>
+</main>

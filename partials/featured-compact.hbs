@@ -1,0 +1,20 @@
+<article class="kq-featured-card kq-featured-compact">
+    <div class="kq-featured-media{{#has tag="#video"}} is-video kq-video-thumbnail{{/has}}">
+        {{#if feature_image}}
+            <img
+                srcset="{{img_url feature_image size="xs" format="webp"}} 160w,
+                        {{img_url feature_image size="s" format="webp"}} 320w,
+                        {{img_url feature_image size="m" format="webp"}} 600w"
+                sizes="168px"
+                src="{{img_url feature_image size="s"}}"
+                alt="" loading="lazy">
+        {{/if}}
+        {{#has tag="#video"}}
+            <svg class="kq-play-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
+        {{/has}}
+    </div>
+    <div class="kq-compact-copy">
+        <p class="kq-type-label">{{#has tag="#video"}}Video{{else}}Essay{{/has}}</p>
+        <h3 class="gh-card-title"><a class="kq-card-stretch" href="{{url}}">{{title}}</a></h3>
+    </div>
+</article>

@@ -1,0 +1,20 @@
+routes:
+  /: home
+
+collections:
+  /projects/:
+    permalink: /projects/{slug}/
+    template: projects
+    filter: tag:hash-project
+    order: featured desc, published_at desc
+  /videos/:
+    permalink: /videos/{slug}/
+    template: videos
+    filter: tag:hash-video
+  /blog/:
+    permalink: /blog/{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

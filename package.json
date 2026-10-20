@@ -1,0 +1,189 @@
+{
+    "name": "ghost-folio",
+    "description": "A portfolio and blog theme for Ghost: landing page, projects with stack filters, videos and writing. Forked from Ghost's Source.",
+    "version": "1.0.0",
+    "engines": {
+        "ghost": ">=5.0.0",
+        "node": ">=22.12.0"
+    },
+    "license": "MIT",
+    "scripts": {
+        "dev": "gulp",
+        "zip": "gulp zip",
+        "build": "gulp build",
+        "test": "gscan .",
+        "test:ci": "gscan --fatal --verbose .",
+        "pretest": "pnpm zip",
+        "pretest:ci": "pnpm zip"
+    },
+    "author": {
+        "name": "Krishna Teja",
+        "url": "https://github.com/krishna-vinci",
+        "email": "me@krishna.quest"
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme",
+        "portfolio"
+    ],
+    "contributors": "https://github.com/TryGhost/Source/graphs/contributors",
+    "devDependencies": {
+        "@tryghost/release-utils": "0.9.2",
+        "@tryghost/theme-translations": "0.0.22",
+        "autoprefixer": "10.6.1",
+        "beeper": "2.1.0",
+        "cssnano": "9.0.5",
+        "gscan": "6.6.1",
+        "gulp": "5.0.1",
+        "gulp-concat": "2.6.1",
+        "gulp-livereload": "4.0.2",
+        "gulp-postcss": "10.0.0",
+        "gulp-uglify": "3.0.2",
+        "gulp-zip": "6.1.0",
+        "inquirer": "14.2.2",
+        "postcss": "8.5.28",
+        "postcss-easy-import": "4.0.0",
+        "pump": "3.0.4"
+    },
+    "browserslist": [
+        "defaults"
+    ],
+    "config": {
+        "posts_per_page": 12,
+        "image_sizes": {
+            "xs": {
+                "width": 160
+            },
+            "s": {
+                "width": 320
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 960
+            },
+            "xl": {
+                "width": 1200
+            },
+            "xxl": {
+                "width": 2000
+            }
+        },
+        "card_assets": true,
+        "custom": {
+            "signup_heading": {
+                "type": "text",
+                "description": "Newsletter heading; defaults to the site title when empty."
+            },
+            "signup_subheading": {
+                "type": "text",
+                "description": "Newsletter description; defaults to the site description when empty."
+            },
+            "resume_url": {
+                "type": "text",
+                "description": "Link to your résumé PDF (upload it in a post's File card). Empty hides the résumé buttons."
+            },
+            "contact_email": {
+                "type": "text",
+                "description": "Shown in the footer and About page links. Leave empty to hide."
+            },
+            "github_url": {
+                "type": "text",
+                "description": "GitHub profile URL. Leave empty to hide the footer link."
+            },
+            "linkedin_url": {
+                "type": "text",
+                "description": "LinkedIn profile URL. Leave empty to hide the footer link."
+            },
+            "hero_eyebrow": {
+                "type": "text",
+                "group": "homepage",
+                "default": "Your Name · Your role",
+                "description": "Short introduction above the homepage heading; uses the default text when empty."
+            },
+            "hero_heading": {
+                "type": "text",
+                "group": "homepage",
+                "default": "I build",
+                "description": "Main homepage heading, before the accented phrase; uses the default text when empty."
+            },
+            "hero_heading_accent": {
+                "type": "text",
+                "group": "homepage",
+                "default": "things people use.",
+                "description": "Emphasized phrase at the end of the homepage heading; uses the default text when empty."
+            },
+            "hero_intro": {
+                "type": "text",
+                "group": "homepage",
+                "default": "A short introduction: what you do, what you work with, and what visitors will find here. Edit this in Settings → Design → Theme.",
+                "description": "Introduction below the homepage heading; uses the default text when empty."
+            },
+            "projects_intro": {
+                "type": "text",
+                "group": "homepage",
+                "default": "A selection of things I've built.",
+                "description": "Intro line on the /projects/ page. Leave empty to hide."
+            },
+            "show_featured": {
+                "type": "boolean",
+                "group": "homepage",
+                "default": true,
+                "description": "Show posts marked Feature this post (essays and videos) after the introduction."
+            },
+            "show_projects": {
+                "type": "boolean",
+                "group": "homepage",
+                "default": true,
+                "description": "Show selected projects when posts tagged #project are available."
+            },
+            "projects_count": {
+                "type": "select",
+                "options": [
+                    "3",
+                    "6"
+                ],
+                "group": "homepage",
+                "default": "3",
+                "description": "Maximum number of projects on the homepage; featured projects appear first."
+            },
+            "show_videos": {
+                "type": "boolean",
+                "group": "homepage",
+                "default": true,
+                "description": "Show the latest three posts tagged #video when available."
+            },
+            "show_writing": {
+                "type": "boolean",
+                "group": "homepage",
+                "default": true,
+                "description": "Show the latest four posts excluding projects and videos."
+            },
+            "show_now": {
+                "type": "boolean",
+                "group": "homepage",
+                "default": false,
+                "description": "Shows the page with slug 'now'."
+            },
+            "show_post_metadata": {
+                "type": "boolean",
+                "group": "post",
+                "default": true,
+                "description": "Show author, publish date, reading time and sharing controls on posts."
+            },
+            "show_related_articles": {
+                "type": "boolean",
+                "group": "post",
+                "default": true,
+                "description": "Show additional articles below posts."
+            }
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/krishna-vinci/ghost-folio.git"
+    },
+    "homepage": "https://github.com/krishna-vinci/ghost-folio"
+}

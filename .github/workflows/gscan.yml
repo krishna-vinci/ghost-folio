@@ -1,0 +1,29 @@
+name: Theme check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  gscan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Enable pnpm
+        run: npm i -g pnpm@10
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build assets
+        run: pnpm build
+
+      - name: Check Ghost compatibility
+        run: npx gscan --fatal .

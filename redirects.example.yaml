@@ -1,0 +1,18 @@
+# Example redirects for Ghost. Copy only the rules you need into your own
+# redirects file. Check the Ghost documentation and Settings → Labs in Ghost
+# Admin for the file format and upload location your Ghost version accepts.
+# Do not use this file unchanged; the slugs below are placeholders.
+#
+# Use this only if you previously published posts at the site root (for
+# example https://example.com/my-old-post/) and want those old URLs to keep
+# working after the posts moved under /blog/. If you never had root-level
+# posts, you do not need this file.
+#
+# Each rule is a regular expression matched against the request path. The
+# value is the destination. Quote keys that contain backslashes.
+301:
+  # One rule per old slug. Replace the slug with your own.
+  # '^\/my-old-post-slug\/?$': /blog/my-old-post-slug/
+
+  # The RSS feed moved from the root to the blog collection.
+  '^\/rss\/?$': /blog/rss/

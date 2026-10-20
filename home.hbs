@@ -1,0 +1,174 @@
+{{!< default}}
+
+<main class="gh-main gh-outer">
+    <div class="gh-inner">
+        <section class="kq-section kq-hero">
+            <div class="kq-hero-main">
+                <p class="kq-eyebrow kq-hero-eyebrow">{{#if @custom.hero_eyebrow}}{{@custom.hero_eyebrow}}{{else}}Your Name · Your role{{/if}}</p>
+                <h1 class="kq-hero-title">
+                    {{#if @custom.hero_heading}}{{@custom.hero_heading}}{{else}}I build{{/if}}
+                    <em>{{#if @custom.hero_heading_accent}}{{@custom.hero_heading_accent}}{{else}}things people use.{{/if}}</em>
+                </h1>
+            </div>
+            <div class="kq-hero-side">
+                <p class="kq-hero-intro">{{#if @custom.hero_intro}}{{@custom.hero_intro}}{{else}}A short introduction: what you do, what you work with, and what visitors will find here. Edit this in Settings → Design → Theme.{{/if}}</p>
+                <div class="kq-hero-actions">
+                    <a class="gh-button" href="/projects/">See projects</a>
+                    <a class="gh-button is-secondary" href="/blog/">Read the blog</a>
+                </div>
+                {{#if @custom.resume_url}}
+                    <div class="kq-resume-row">
+                        <a class="gh-button is-secondary kq-resume-button" href="{{@custom.resume_url}}" target="_blank" rel="noopener">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
+                            Résumé
+                        </a>
+                        <a class="kq-resume-download" href="{{@custom.resume_url}}" download aria-label="Download résumé PDF" title="Download résumé PDF">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        </a>
+                    </div>
+                {{/if}}
+            </div>
+        </section>
+
+        {{#get "tags" filter="visibility:internal+slug:~^'hash-stack-'" limit="20"}}
+            {{#if tags}}
+                <div class="kq-stack-strip" aria-label="Technologies I work with">
+                    <ul class="kq-stack-track">
+                        {{#foreach tags visibility="all"}}
+                            <li>{{#split name separator="#stack-"}}{{this.[0]}}{{/split}}</li>
+                        {{/foreach}}
+                        {{#foreach tags visibility="all"}}
+                            <li class="kq-stack-dup" aria-hidden="true">{{#split name separator="#stack-"}}{{this.[0]}}{{/split}}</li>
+                        {{/foreach}}
+                    </ul>
+                </div>
+            {{/if}}
+        {{/get}}
+
+        {{#if @custom.show_featured}}
+            {{#get "posts" filter="tag:hash-pinned+tag:-hash-project" limit="1" include="tags" as |pinned|}}
+                {{#if pinned}}
+                    <section class="kq-section kq-featured">
+                        <header class="kq-section-header">
+                            <h2 class="kq-section-title">Featured</h2>
+                        </header>
+                        <div class="kq-featured-pinned">
+                            {{#foreach pinned}}
+                                {{> "featured-lead"}}
+                            {{/foreach}}
+                            {{#get "posts" filter="featured:true+tag:-hash-project+tag:-hash-pinned" limit="2" include="tags" as |side|}}
+                                {{#if side}}
+                                    <div class="kq-featured-side">
+                                        {{#foreach side}}
+                                            {{> "featured-compact"}}
+                                        {{/foreach}}
+                                    </div>
+                                {{/if}}
+                            {{/get}}
+                        </div>
+                    </section>
+                {{else}}
+                    {{> "featured-grid"}}
+                {{/if}}
+            {{else}}
+                {{> "featured-grid"}}
+            {{/get}}
+        {{/if}}
+
+        {{#if @custom.show_projects}}
+            {{#get "posts" filter="tag:hash-project" order="featured desc, published_at desc" limit=@custom.projects_count include="tags"}}
+                {{#if posts}}
+                    <section class="kq-section kq-projects">
+                        <header class="kq-section-header">
+                            <h2 class="kq-section-title">Selected projects</h2>
+                            <a href="/projects/">All projects →</a>
+                        </header>
+                        <div class="kq-project-grid">
+                            {{#foreach posts}}
+                                {{> "project-card"}}
+                            {{/foreach}}
+                        </div>
+                    </section>
+                {{/if}}
+            {{/get}}
+        {{/if}}
+
+        {{#if @custom.show_videos}}
+            {{#get "posts" filter="tag:hash-video" order="published_at desc" limit="3"}}
+                {{#if posts}}
+                    <section class="kq-section kq-videos">
+                        <div class="kq-video-featured">
+                            {{#foreach posts limit="1"}}
+                                <a class="kq-video-player kq-video-thumbnail" href="{{url}}" aria-label="Watch: {{title}}">
+                                    {{#if feature_image}}
+                                        <img
+                                            srcset="{{img_url feature_image size="s" format="webp"}} 320w,
+                                                    {{img_url feature_image size="m" format="webp"}} 600w,
+                                                    {{img_url feature_image size="l" format="webp"}} 960w,
+                                                    {{img_url feature_image size="xl" format="webp"}} 1200w"
+                                            sizes="(max-width: 799px) 100vw, 640px"
+                                            src="{{img_url feature_image size="m"}}"
+                                            alt="" loading="lazy">
+                                    {{/if}}
+                                    <svg class="kq-play-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"/></svg>
+                                </a>
+                                <div class="kq-video-copy">
+                                    <p class="kq-eyebrow">Latest video</p>
+                                    <h2 class="kq-video-title"><a href="{{url}}">{{title}}</a></h2>
+                                    {{#if custom_excerpt}}<p class="kq-video-excerpt">{{custom_excerpt}}</p>{{else}}<p class="kq-video-excerpt">{{excerpt words="28"}}</p>{{/if}}
+                                    <a class="kq-more-link" href="/videos/">All videos →</a>
+                                </div>
+                            {{/foreach}}
+                        </div>
+                        {{#foreach posts from="2" limit="2"}}
+                            {{#if @first}}<div class="kq-video-grid">{{/if}}
+                            {{> "video-card"}}
+                            {{#if @last}}</div>{{/if}}
+                        {{/foreach}}
+                    </section>
+                {{/if}}
+            {{/get}}
+        {{/if}}
+
+        {{#if @custom.show_writing}}
+            {{#get "posts" filter="tag:-hash-project+tag:-hash-video+featured:false+tag:-hash-pinned" order="published_at desc" limit="4" include="tags"}}
+                {{#if posts}}
+                    <section class="kq-section kq-writing">
+                        <header class="kq-section-header">
+                            <h2 class="kq-section-title">Latest writing</h2>
+                            <a href="/blog/">All posts →</a>
+                        </header>
+                        <ul class="kq-writing-list">
+                            {{#foreach posts}}
+                                <li>
+                                    <a class="kq-writing-row" href="{{url}}">
+                                        <span class="kq-writing-title">{{title}}</span>
+                                        <span class="kq-writing-meta">
+                                            {{#if primary_tag}}{{#match primary_tag.visibility "public"}}<span class="kq-writing-tag">{{primary_tag.name}}</span>{{/match}}{{/if}}
+                                            <span class="kq-writing-arrow" aria-hidden="true">→</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            {{/foreach}}
+                        </ul>
+                    </section>
+                {{/if}}
+            {{/get}}
+        {{/if}}
+
+        {{#if @custom.show_now}}
+            {{#get "pages" filter="slug:now" limit="1"}}
+                {{#foreach pages}}
+                    <section class="kq-section kq-now">
+                        <h2 class="kq-section-title">{{title}}</h2>
+                        <div class="gh-content is-body">{{content}}</div>
+                    </section>
+                {{/foreach}}
+            {{/get}}
+        {{/if}}
+
+        <section class="kq-section kq-subscribe">
+            {{> "components/cta"}}
+        </section>
+    </div>
+</main>
